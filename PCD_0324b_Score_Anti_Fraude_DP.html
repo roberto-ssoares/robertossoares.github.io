@@ -1,0 +1,4765 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PCD_0324b_Score_Anti_Fraude_DP</title>
+<!-- MathJax Configuração -->
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true
+        }
+      });
+    </script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!-- Adicionando o Highlight.js para sintaxe de código -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+        /* Estilo básico para o notebook exportado */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .output {
+            background-color: #ECECEC;
+            border-left: 5px solid #ccc;
+            padding: 10px;
+            margin: 2px 0;
+            color: #171c81; /* Cor do texto do código */
+            font-size: 20px; /* Diminui o tamanho da fonte */
+        }
+
+        .code_cell {
+            background-color: #fdf0f0; /* Fundo cinza claro */
+            border: 2px solid #e0e0e0; /* Borda clara */
+            padding: 10px;
+            margin: 10px 0;
+            color: #333333; /* Cor do texto do código */
+            font-size: 14px; /* Tamanho da fonte aumentado */
+            line-height: 1.4; /* Espaçamento entre linhas aumentado */            
+        }
+
+        pre {
+            background-color: #f7f7f7; /* Fundo cinza claro */
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0; /* Remove margens adicionais */        
+        }
+
+        /* Adicionando estilo de Highlight.js ao código */
+        .code_cell pre code {
+            background-color: #f5f2f0; /* Fundo similar ao Jupyter */
+            color: #000; /* Texto preto */
+            font-family: 'Courier New', Courier New, monospace; /* Estilo de fonte monoespaçada */
+        }
+
+        .output_png img {
+            width: 95%; /* Faz com que a imagem ocupe 90% da largura da célula */
+            max-width: 1000px; /* Limita a largura máxima da imagem a 1200 pixels */
+            height: 95%; /* Mantém a proporção original da imagem */
+            text-align: center;
+        }
+
+        .cell {
+            margin-bottom: 20px;
+            color: #171c81; /* Cor do texto do código */
+        }
+
+        .anchor-link {
+            display: none; /* Remover a exibição do símbolo ¶ */
+        }
+
+        .scrollable-output {
+            max-height: 100%; /* Define a altura máxima antes de ativar o scroll */
+            max-width: 100%; /* Ajusta a largura ao tamanho da tela */
+            overflow-x: auto; /* Habilita o scroll horizontal */
+            border: 1px solid #ccc; /* Adiciona uma borda ao contêiner */
+            padding: 10px;
+            background-color: #fff; /* Cor de fundo para contraste */
+        }
+
+        h1 {
+            font-size: 20px; /* Diminui o tamanho da fonte */
+            font-family: 'Segoe Print', Segoe, Print; /* Altera a fonte para Times New Roman */
+            color: #686f87; /* Cor opcional */
+        }
+    </style>
+</head>
+<body>
+<h1>PCD_0324b_Score_Anti_Fraude_DP</h1>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h1 id=""><a class="anchor-link" href="#">¶</a></h1><p style="text-align: center;">
+<font color="#0A1781" face="Segoe Script" size="6">
+<strong>
+        PoD Academy<br \=""/>Formação Full Stack Data &amp; Analytics
+    </strong>
+</font>
+</p>
+<p style="text-align: center;">
+<font color="#C58A1E" face="Segoe Script" size="6.5">
+<strong>[PCD_0324b] - Score Anti-Fraude<br>Data Preparation (Feature Engineering)
+</br></strong></font>
+</p>
+<h1 id=""><a class="anchor-link" href="#">¶</a></h1></div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F4F4F4">
+<p style="text-align: right;">
+<font color="#444444" face="Segoe Script" size="4">
+    Roberto Soares - LfLngLrnng
+  </font>
+</p>
+<p style="text-align: right;"><font color="#444444" face="Segoe Print" size="2">
+<a href="https://www.linkedin.com/in/roberto-dos-santos-soares/">in/roberto-dos-santos-soares</a>
+<p style="text-align: right;"><font color="#444444" face="Segoe Print" size="2">
+<a href="https://github.com/roberto-ssoares/roberto-ssoares.github.io">Portifólio: roberto-ssoares</a>
+<p style="text-align: right;">
+<font color="#444444" face="Segoe Script" size="3">
+    PoD Academy - Prof. Gustavo Lenin<br \=""/>[+] Faturamento,<br \=""/> [-] Custo,<br \=""/> [+] Qualidade de vida  
+  </font>
+</p>
+</font></p></font></p></div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="CRISP-DM---(Data-Preparation-(Feature-Engineering))"><font color="#CC403E" face="Segoe Print" size="5"><strong>CRISP-DM - (Data Preparation (Feature Engineering))</strong></font><a class="anchor-link" href="#CRISP-DM---(Data-Preparation-(Feature-Engineering))">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<p>O foco principal é transformar os dados brutos em um formato adequado para modelagem e análise. Para o projeto de detecção de fraudes em transações de cartões de crédito em terminais físicos,<br>essa fase é fundamental, pois o sucesso do modelo de machine learning depende diretamente da qualidade dos dados e da engenharia de variáveis (<strong>Feature Engineering</strong>).</br></p>
+<p>Fases do <strong>Data Preparation</strong>:</p>
+<ol>
+<li><strong>Seleção dos Dados</strong></li>
+</ol>
+<ul>
+<li>A primeira etapa da preparação dos dados envolve a escolha das variáveis mais relevantes para o modelo de detecção de fraudes. Isso pode incluir:<ul>
+<li><strong>Dados transacionais</strong>: valor da transação, data, hora, localização do terminal, ID do terminal, método de autenticação (PIN, chip, contato).</li>
+<li><strong>Informações do cliente</strong>: histórico de transações, comportamento de compra, localização habitual.</li>
+<li><strong>Variáveis externas</strong>: informações de bureaus de crédito, como perfil de risco e histórico de crédito.</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>Limpeza de Dados</strong></li>
+</ol>
+<ul>
+<li>Antes de prosseguir, é necessário limpar os dados para remover ou corrigir qualquer anomalia ou inconsistência, tais como:<ul>
+<li><strong>Dados faltantes</strong>: tratamento de valores nulos ou ausentes. Por exemplo, se uma transação não tiver um campo de localização preenchido, pode ser necessário imputar essa informação<br>com base em dados históricos ou descartar a transação.</br></li>
+<li><strong>Outliers</strong>: identificar transações fora do comportamento normal do cliente, como grandes transações em um curto período de tempo. Embora outliers possam indicar fraudes,<br>também podem ser ruído, e isso precisa ser cuidadosamente avaliado.</br></li>
+<li><strong>Duplicatas</strong>: garantir que não haja transações duplicadas, especialmente quando falhas de terminal ou de processamento podem ter gerado registros redundantes.</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>Engenharia de Variáveis (Feature Engineering)</strong></li>
+</ol>
+<ul>
+<li>A engenharia de variáveis é uma etapa crítica em que <strong>novos atributos</strong> ou <strong>features</strong> são criados a partir dos dados originais. Para um modelo de detecção de fraudes,<br/>algumas <strong>features</strong> que podem ser criadas incluem:<ul>
+<li><strong>Diferença temporal</strong>: o tempo entre transações consecutivas de um cliente. Transações realizadas em um intervalo muito curto podem ser indicativas de fraude.</li>
+<li><strong>Distância geográfica</strong>: a distância entre a localização do terminal e a última localização conhecida do cliente. Fraudes muitas vezes envolvem transações em locais incomuns.</li>
+<li><strong>Frequência de transações</strong>: criar variáveis que capturem a frequência com que o cliente utiliza o cartão em diferentes janelas temporais (últimas 24 horas, última semana, último mês).</li>
+<li><strong>Padrão de gastos</strong>: uma média ou desvio padrão do valor das transações por cliente. Transações que diferem muito do padrão normal podem ser um sinal de alerta.</li>
+<li><strong>Horários de transações</strong>: transações realizadas em horários não usuais (por exemplo, de madrugada) podem ter uma maior probabilidade de serem fraudulentas.</li>
+<li><strong>Autenticação do cliente</strong>: se a transação foi autenticada com métodos mais ou menos seguros (como PIN ou contato).</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><strong>Transformação de Dados</strong></li>
+</ol>
+<ul>
+<li>Algumas transformações podem ser necessárias para garantir que os dados estejam prontos para serem processados pelos algoritmos de machine learning:<ul>
+<li><strong>Normalização ou padronização</strong>: certas variáveis, como valor da transação ou distância, podem precisar ser normalizadas para que os algoritmos não atribuam peso desproporcional a elas.</li>
+<li><strong>Codificação de variáveis categóricas</strong>: atributos como "método de autenticação" podem ser transformados em valores numéricos por meio de técnicas como <strong>one-hot encoding</strong>.</li>
+<li><strong>Agrupamento de dados temporais</strong>: em vez de analisar cada transação de forma isolada, é possível agrupar as transações em janelas temporais (como as últimas 24 horas),<br/>criando <strong>features</strong> agregadas.</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li><strong>Construção de Books de Variáveis</strong></li>
+</ol>
+<ul>
+<li>O <strong>Book de Variáveis</strong> será um conjunto de <strong>features</strong> derivadas e refinadas, como as descritas acima, que são essenciais para o modelo de detecção de fraudes.</li>
+<li>Isso incluirá variáveis de comportamento do cliente, padrões de uso do cartão, e métricas de risco.</li>
+<li>O objetivo do <strong>feature engineering</strong> é criar variáveis que melhorem a capacidade do modelo de identificar transações fraudulentas.</li>
+<li>Esses <strong>Books de Variáveis</strong> serão usados tanto para o treinamento quanto para a aplicação do modelo em tempo real.</li>
+</ul>
+<ol start="6">
+<li><strong>Integração e Consolidação</strong></li>
+</ol>
+<ul>
+<li>Nesta etapa, todas as fontes de dados (transacionais, bureau, books de variáveis) serão consolidadas em um único dataset pronto para a fase de modelagem.</li>
+<li>É importante garantir que as informações de diferentes fontes estejam devidamente sincronizadas, especialmente em relação a atributos temporais e comportamentais.</li>
+</ul>
+<p>Resumo:</p>
+<ul>
+<li>A fase de <strong>Data Preparation</strong> prepara o terreno para a criação de um modelo robusto, focando na seleção, limpeza, transformação e engenharia de <strong>features</strong>.</li>
+<li>Essas <strong>features</strong> são o diferencial que permitirá ao modelo detectar com precisão as fraudes, analisando os padrões de transações em terminais físicos e identificando comportamentos fora do comum.</li>
+</ul>
+<p>Essa fase é especialmente importante para garantir que o modelo de machine learning seja eficaz na identificação de fraudes, minimizando falsos positivos e maximizando a precisão.</p>
+</font></div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#EBE7E1">
+<p><font color="#FF5733" face="Segoe Print" size="4">Instalando e Carregando Pacotes</font></p>
+<td>
+<font color="#66666" face="Segoe Print" size="2">
+<ul>
+<li>Para atualizar um pacote, execute o comando abaixo no terminal ou prompt de comando:<ul>
+<li>pip install -U nome_pacote</li>
+</ul>
+</li>
+<li>Para instalar a versão exata de um pacote, execute o comando abaixo no terminal ou prompt de comando:<ul>
+<li>!pip install nome_pacote==versão_desejada</li>
+</ul>
+</li>
+<li>Depois de instalar ou atualizar o pacote, reinicie o jupyter notebook.</li>
+<li>Instala o pacote watermark<ul>
+<li>Esse pacote é usado para gravar as versões de outros pacotes usados neste jupyter notebook.
+</li></ul></li></ul></font></td>
+
+
+
+
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">#!pip install -q -U watermark
+#!pip install -q cartopy</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#EBE7E1">
+<p><font color="#FF5733" face="Segoe Print" size="3">Bibliotecas Necessárias</font></p>
+<font color="#66666" face="Segoe Print" size="2">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+
+from datetime import timedelta
+
+import warnings
+warnings.filterwarnings("ignore")</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Versões dos pacotes usados neste jupyter notebook
+%reload_ext watermark
+%watermark -a "Roberto Soares - LfLngLrnng"</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>Author: Roberto Soares - LfLngLrnng
+
+</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%matplotlib inline
+matplotlib.rcParams['font.size'] = 10
+matplotlib.rcParams['figure.figsize'] = (10, 5)
+matplotlib.rcParams['figure.facecolor'] = '#00000000'
+
+pd.options.display.max_columns = 20
+pd.options.display.max_rows = 20
+pd.options.display.max_colwidth = 80
+np.set_printoptions(precision=4, suppress=True)</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering"><font color="#CC403E" face="Segoe Print" size="5"><strong>Feature Engineering</strong></font><a class="anchor-link" href="#Feature-Engineering">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#EBE7E1">
+<p><font color="#FF5733" face="Segoe Print" size="3"><strong>Trocando espaços por underline e transformando de maiúsculas:</strong></font></p>
+<font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">def format_column_names(df):
+    # Renomeia as colunas, substituindo espaços por underlines e convertendo para maiúsculas.
+    df.columns = [col.replace(' ', '_').upper() for col in df.columns]
+    return df</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#EBE7E1">
+<p><font color="#FF5733" face="Segoe Print" size="3"><strong>Vamos ler as tabelas de dados:</strong></font></p>
+<font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">caminho = "D:/_jupyter/pod/ds/mod06-ciencia-de-dados/data/"
+previsao_fraude_train = "pcd_0324_train.csv"
+previsao_fraude_test = "pcd_0324_test.csv"
+terminal_csv = "pcd_0324_terminal.csv"
+customer_csv = "pcd_0324_customer.csv"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df00_train = pd.read_csv(caminho+previsao_fraude_train)
+print(df00_train.shape)
+print()
+print(df00_train.info())
+print()
+df00_train.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>(291231, 6)
+
+<class 'pandas.core.frame.dataframe'="">
+RangeIndex: 291231 entries, 0 to 291230
+Data columns (total 6 columns):
+ #   Column          Non-Null Count   Dtype  
+---  ------          --------------   -----  
+ 0   TRANSACTION_ID  291231 non-null  int64  
+ 1   TX_DATETIME     291231 non-null  object 
+ 2   CUSTOMER_ID     291231 non-null  int64  
+ 3   TERMINAL_ID     291231 non-null  int64  
+ 4   TX_AMOUNT       291231 non-null  float64
+ 5   TX_FRAUD        291231 non-null  int64  
+dtypes: float64(1), int64(4), object(1)
+memory usage: 13.3+ MB
+None
+
+</class></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>59383</td>
+<td>2021-08-01 00:04:37</td>
+<td>323</td>
+<td>217</td>
+<td>4.60</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>59384</td>
+<td>2021-08-01 00:12:10</td>
+<td>6</td>
+<td>429</td>
+<td>8.61</td>
+<td>0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>59385</td>
+<td>2021-08-01 00:12:34</td>
+<td>714</td>
+<td>1011</td>
+<td>64.00</td>
+<td>0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>59386</td>
+<td>2021-08-01 00:15:40</td>
+<td>266</td>
+<td>1969</td>
+<td>12.72</td>
+<td>0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>59387</td>
+<td>2021-08-01 00:16:01</td>
+<td>890</td>
+<td>1482</td>
+<td>98.88</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df00_test = pd.read_csv(caminho+previsao_fraude_test)
+print(df00_test.shape)
+print()
+print(df00_test.info())
+print()
+df00_test.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>(226731, 5)
+
+<class 'pandas.core.frame.dataframe'="">
+RangeIndex: 226731 entries, 0 to 226730
+Data columns (total 5 columns):
+ #   Column          Non-Null Count   Dtype  
+---  ------          --------------   -----  
+ 0   TRANSACTION_ID  226731 non-null  int64  
+ 1   TX_DATETIME     226731 non-null  object 
+ 2   CUSTOMER_ID     226731 non-null  int64  
+ 3   TERMINAL_ID     226731 non-null  int64  
+ 4   TX_AMOUNT       226731 non-null  float64
+dtypes: float64(1), int64(3), object(1)
+memory usage: 8.6+ MB
+None
+
+</class></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>352590</td>
+<td>2022-01-01 00:03:14</td>
+<td>208</td>
+<td>640</td>
+<td>147.24</td>
+</tr>
+<tr>
+<th>1</th>
+<td>352591</td>
+<td>2022-01-01 00:26:39</td>
+<td>851</td>
+<td>315</td>
+<td>13.27</td>
+</tr>
+<tr>
+<th>2</th>
+<td>352592</td>
+<td>2022-01-01 00:30:30</td>
+<td>454</td>
+<td>27</td>
+<td>70.52</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df00_terminal = pd.read_csv(caminho+terminal_csv)
+print(df00_terminal.shape)
+print()
+print(df00_terminal.info())
+print()
+df00_terminal.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>(2000, 3)
+
+<class 'pandas.core.frame.dataframe'="">
+RangeIndex: 2000 entries, 0 to 1999
+Data columns (total 3 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   TERMINAL_ID    2000 non-null   int64  
+ 1   x_terminal_id  2000 non-null   float64
+ 2   y_terminal_id  2000 non-null   float64
+dtypes: float64(2), int64(1)
+memory usage: 47.0 KB
+None
+
+</class></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TERMINAL_ID</th>
+<th>x_terminal_id</th>
+<th>y_terminal_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>9.388886</td>
+<td>44.298820</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>12.204779</td>
+<td>38.423219</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>16.123444</td>
+<td>41.642938</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>13.341542</td>
+<td>37.858452</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4</td>
+<td>11.964165</td>
+<td>55.351051</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df01_terminal = format_column_names(df00_terminal)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df01_terminal.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TERMINAL_ID</th>
+<th>X_TERMINAL_ID</th>
+<th>Y_TERMINAL_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>9.388886</td>
+<td>44.298820</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>12.204779</td>
+<td>38.423219</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>16.123444</td>
+<td>41.642938</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df00_customer = pd.read_csv(caminho+customer_csv)
+print(df00_customer.shape)
+print()
+print(df00_customer.info())
+print()
+df00_customer.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>(1000, 6)
+
+<class 'pandas.core.frame.dataframe'="">
+RangeIndex: 1000 entries, 0 to 999
+Data columns (total 6 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   CUSTOMER_ID         1000 non-null   int64  
+ 1   x_customer_id       1000 non-null   float64
+ 2   y_customer_id       1000 non-null   float64
+ 3   mean_amount         1000 non-null   float64
+ 4   std_amount          1000 non-null   float64
+ 5   mean_nb_tx_per_day  1000 non-null   float64
+dtypes: float64(5), int64(1)
+memory usage: 47.0 KB
+None
+
+</class></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>CUSTOMER_ID</th>
+<th>x_customer_id</th>
+<th>y_customer_id</th>
+<th>mean_amount</th>
+<th>std_amount</th>
+<th>mean_nb_tx_per_day</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.131260</td>
+<td>2.179533</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>13.671851</td>
+<td>52.775318</td>
+<td>46.570785</td>
+<td>23.285393</td>
+<td>3.567092</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>-9.381829</td>
+<td>38.617619</td>
+<td>80.213879</td>
+<td>40.106939</td>
+<td>2.115580</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>-3.745116</td>
+<td>40.551744</td>
+<td>11.748426</td>
+<td>5.874213</td>
+<td>0.348517</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4</td>
+<td>4.312412</td>
+<td>51.067100</td>
+<td>78.924891</td>
+<td>39.462446</td>
+<td>3.480049</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df01_customer = format_column_names(df00_customer)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df01_customer.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>CUSTOMER_ID</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>MEAN_NB_TX_PER_DAY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.131260</td>
+<td>2.179533</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>13.671851</td>
+<td>52.775318</td>
+<td>46.570785</td>
+<td>23.285393</td>
+<td>3.567092</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>-9.381829</td>
+<td>38.617619</td>
+<td>80.213879</td>
+<td>40.106939</td>
+<td>2.115580</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Treino
+df_merged = pd.merge(df00_train, df01_customer, on='CUSTOMER_ID', how='left')
+df_train_merged = pd.merge(df_merged, df01_terminal, on='TERMINAL_ID', how='left')
+
+# Teste
+df_merged = pd.merge(df00_test, df01_customer, on='CUSTOMER_ID', how='left')
+df_test_merged = pd.merge(df_merged, df01_terminal, on='TERMINAL_ID', how='left')</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Convertendo a coluna TX_DATETIME para datetime
+df_train_merged['TX_DATETIME'] = pd.to_datetime(df_train_merged['TX_DATETIME'])
+df_test_merged['TX_DATETIME'] = pd.to_datetime(df_test_merged['TX_DATETIME'])
+
+# Criando a variável que indica o mês de referência
+df_train_merged['MONTH_REFERENCE'] = df_train_merged['TX_DATETIME'].dt.strftime('%Y%m')
+df_test_merged['MONTH_REFERENCE'] = df_test_merged['TX_DATETIME'].dt.strftime('%Y%m')
+
+df_train_merged.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>MEAN_NB_TX_PER_DAY</th>
+<th>X_TERMINAL_ID</th>
+<th>Y_TERMINAL_ID</th>
+<th>MONTH_REFERENCE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>59383</td>
+<td>2021-08-01 00:04:37</td>
+<td>323</td>
+<td>217</td>
+<td>4.60</td>
+<td>0</td>
+<td>-0.362432</td>
+<td>39.512573</td>
+<td>7.353061</td>
+<td>3.676530</td>
+<td>3.324124</td>
+<td>2.439994</td>
+<td>50.324767</td>
+<td>202108</td>
+</tr>
+<tr>
+<th>1</th>
+<td>59384</td>
+<td>2021-08-01 00:12:10</td>
+<td>6</td>
+<td>429</td>
+<td>8.61</td>
+<td>0</td>
+<td>-0.466155</td>
+<td>38.210214</td>
+<td>18.618562</td>
+<td>9.309281</td>
+<td>3.778676</td>
+<td>11.450431</td>
+<td>49.902275</td>
+<td>202108</td>
+</tr>
+<tr>
+<th>2</th>
+<td>59385</td>
+<td>2021-08-01 00:12:34</td>
+<td>714</td>
+<td>1011</td>
+<td>64.00</td>
+<td>0</td>
+<td>-0.682848</td>
+<td>38.095822</td>
+<td>82.620413</td>
+<td>41.310207</td>
+<td>3.723765</td>
+<td>13.616103</td>
+<td>46.150744</td>
+<td>202108</td>
+</tr>
+<tr>
+<th>3</th>
+<td>59386</td>
+<td>2021-08-01 00:15:40</td>
+<td>266</td>
+<td>1969</td>
+<td>12.72</td>
+<td>0</td>
+<td>14.309093</td>
+<td>40.607318</td>
+<td>9.852171</td>
+<td>4.926085</td>
+<td>3.862067</td>
+<td>12.286148</td>
+<td>45.514582</td>
+<td>202108</td>
+</tr>
+<tr>
+<th>4</th>
+<td>59387</td>
+<td>2021-08-01 00:16:01</td>
+<td>890</td>
+<td>1482</td>
+<td>98.88</td>
+<td>0</td>
+<td>-4.209270</td>
+<td>36.454733</td>
+<td>83.660035</td>
+<td>41.830018</td>
+<td>3.128315</td>
+<td>5.168861</td>
+<td>51.234704</td>
+<td>202108</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df_train_merged.shape</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>(291231, 14)</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">df_train_merged.describe()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>MEAN_NB_TX_PER_DAY</th>
+<th>X_TERMINAL_ID</th>
+<th>Y_TERMINAL_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>291231.000000</td>
+<td>291231</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+<td>291231.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>204998.000000</td>
+<td>2021-10-16 02:06:44.044813056</td>
+<td>496.256202</td>
+<td>993.718526</td>
+<td>53.182274</td>
+<td>0.022601</td>
+<td>6.369599</td>
+<td>46.715810</td>
+<td>51.710394</td>
+<td>25.855197</td>
+<td>2.650934</td>
+<td>6.929841</td>
+<td>46.906274</td>
+</tr>
+<tr>
+<th>min</th>
+<td>59383.000000</td>
+<td>2021-08-01 00:04:37</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>-15.722968</td>
+<td>36.442978</td>
+<td>5.063101</td>
+<td>2.531550</td>
+<td>0.018782</td>
+<td>-16.913020</td>
+<td>34.480700</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>132190.500000</td>
+<td>2021-09-08 05:17:43.500000</td>
+<td>249.000000</td>
+<td>496.000000</td>
+<td>21.130000</td>
+<td>0.000000</td>
+<td>-0.691936</td>
+<td>40.348956</td>
+<td>28.606102</td>
+<td>14.303051</td>
+<td>1.956902</td>
+<td>0.274440</td>
+<td>40.835133</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>204998.000000</td>
+<td>2021-10-16 05:55:26</td>
+<td>498.000000</td>
+<td>1000.000000</td>
+<td>44.770000</td>
+<td>0.000000</td>
+<td>8.429219</td>
+<td>48.108743</td>
+<td>51.641807</td>
+<td>25.820903</td>
+<td>2.836935</td>
+<td>8.534868</td>
+<td>47.972450</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>277805.500000</td>
+<td>2021-11-23 06:15:18.500000</td>
+<td>741.000000</td>
+<td>1483.000000</td>
+<td>76.850000</td>
+<td>0.000000</td>
+<td>12.479186</td>
+<td>51.567670</td>
+<td>75.288972</td>
+<td>37.644486</td>
+<td>3.438147</td>
+<td>12.748856</td>
+<td>51.636076</td>
+</tr>
+<tr>
+<th>max</th>
+<td>350613.000000</td>
+<td>2021-12-30 23:58:21</td>
+<td>999.000000</td>
+<td>1999.000000</td>
+<td>291.150000</td>
+<td>1.000000</td>
+<td>25.192465</td>
+<td>60.406826</td>
+<td>99.981815</td>
+<td>49.990907</td>
+<td>3.999725</td>
+<td>26.843163</td>
+<td>64.060717</td>
+</tr>
+<tr>
+<th>std</th>
+<td>84071.292461</td>
+<td>NaN</td>
+<td>285.274966</td>
+<td>575.267551</td>
+<td>39.573329</td>
+<td>0.148627</td>
+<td>8.551536</td>
+<td>6.486223</td>
+<td>27.475610</td>
+<td>13.737805</td>
+<td>0.961907</td>
+<td>8.708658</td>
+<td>6.408352</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00 = df_train_merged.copy()
+test_fe00 = df_test_merged.copy()</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-1.-Indicadores-de-tempo-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 1. Indicadores de tempo ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-1.-Indicadores-de-tempo-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Função para classificar o período do dia
+def classify_period(hour):
+    if 5 &lt;= hour &lt; 12:
+        return 'manhã'
+    elif 12 &lt;= hour &lt; 18:
+        return 'tarde'
+    else:
+        return 'noite'
+
+# Aplicar a função para criar a nova coluna 'PERIODO_DIA'
+train_fe00['PERIODO_DIA'] = train_fe00['TX_DATETIME'].dt.hour.apply(classify_period)
+test_fe00['PERIODO_DIA'] = test_fe00['TX_DATETIME'].dt.hour.apply(classify_period)
+
+train_fe00.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>MEAN_NB_TX_PER_DAY</th>
+<th>X_TERMINAL_ID</th>
+<th>Y_TERMINAL_ID</th>
+<th>MONTH_REFERENCE</th>
+<th>PERIODO_DIA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>59383</td>
+<td>2021-08-01 00:04:37</td>
+<td>323</td>
+<td>217</td>
+<td>4.60</td>
+<td>0</td>
+<td>-0.362432</td>
+<td>39.512573</td>
+<td>7.353061</td>
+<td>3.676530</td>
+<td>3.324124</td>
+<td>2.439994</td>
+<td>50.324767</td>
+<td>202108</td>
+<td>noite</td>
+</tr>
+<tr>
+<th>1</th>
+<td>59384</td>
+<td>2021-08-01 00:12:10</td>
+<td>6</td>
+<td>429</td>
+<td>8.61</td>
+<td>0</td>
+<td>-0.466155</td>
+<td>38.210214</td>
+<td>18.618562</td>
+<td>9.309281</td>
+<td>3.778676</td>
+<td>11.450431</td>
+<td>49.902275</td>
+<td>202108</td>
+<td>noite</td>
+</tr>
+<tr>
+<th>2</th>
+<td>59385</td>
+<td>2021-08-01 00:12:34</td>
+<td>714</td>
+<td>1011</td>
+<td>64.00</td>
+<td>0</td>
+<td>-0.682848</td>
+<td>38.095822</td>
+<td>82.620413</td>
+<td>41.310207</td>
+<td>3.723765</td>
+<td>13.616103</td>
+<td>46.150744</td>
+<td>202108</td>
+<td>noite</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Extração de features temporais para o DataFrame de treino (df_train_merged)
+train_fe00['HOUR_OF_DAY']  = train_fe00['TX_DATETIME'].dt.hour          # Hora do dia
+train_fe00['DAY_OF_WEEK']  = train_fe00['TX_DATETIME'].dt.dayofweek     # Dia da semana (0=segunda-feira, 6=domingo)
+train_fe00['DAY_OF_MONTH'] = train_fe00['TX_DATETIME'].dt.day          # Dia do mês
+train_fe00['MONTH']        = train_fe00['TX_DATETIME'].dt.month               # Mês
+train_fe00['YEAR']         = train_fe00['TX_DATETIME'].dt.year                 # Ano
+train_fe00['IS_WEEKEND']   = train_fe00['TX_DATETIME'].dt.dayofweek &gt;= 5 # Flag para finais de semana (sábado e domingo)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># # Extração de features temporais para o DataFrame de teste (df_test_merged)
+test_fe00['HOUR_OF_DAY']  = test_fe00['TX_DATETIME'].dt.hour          # Hora do dia
+test_fe00['DAY_OF_WEEK']  = test_fe00['TX_DATETIME'].dt.dayofweek     # Dia da semana (0=segunda-feira, 6=domingo)
+test_fe00['DAY_OF_MONTH'] = test_fe00['TX_DATETIME'].dt.day          # Dia do mês
+test_fe00['MONTH']        = test_fe00['TX_DATETIME'].dt.month               # Mês
+test_fe00['YEAR']         = test_fe00['TX_DATETIME'].dt.year                 # Ano
+test_fe00['IS_WEEKENG']   = test_fe00['TX_DATETIME'].dt.dayofweek &gt;= 5 # Flag para finais de semana (sábado e domingo)</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-2.-Diferen%C3%A7a-de-tempo-entre-duas-transa%C3%A7%C3%B5es-consecutivas-para-o-mesmo-cliente-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 2. Diferença de tempo entre duas transações consecutivas para o mesmo cliente ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-2.-Diferen%C3%A7a-de-tempo-entre-duas-transa%C3%A7%C3%B5es-consecutivas-para-o-mesmo-cliente-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Ordenar por CUSTOMER_ID e TX_DATETIME
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Calcular a diferença de tempo entre transações consecutivas do mesmo cliente
+train_fe00['TIME_DIFF_TRANSACTIONS'] = train_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff()
+
+# Ordenar por CUSTOMER_ID e TX_DATETIME
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Calcular a diferença de tempo entre transações consecutivas do mesmo cliente
+test_fe00['TIME_DIFF_TRANSACTIONS'] = test_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff()
+
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>Y_TERMINAL_ID</th>
+<th>MONTH_REFERENCE</th>
+<th>PERIODO_DIA</th>
+<th>HOUR_OF_DAY</th>
+<th>DAY_OF_WEEK</th>
+<th>DAY_OF_MONTH</th>
+<th>MONTH</th>
+<th>YEAR</th>
+<th>IS_WEEKEND</th>
+<th>TIME_DIFF_TRANSACTIONS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>59.061828</td>
+<td>202108</td>
+<td>noite</td>
+<td>3</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>NaT</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>37.452541</td>
+<td>202108</td>
+<td>manhã</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 02:29:38</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>57.292877</td>
+<td>202108</td>
+<td>manhã</td>
+<td>10</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 05:09:34</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.073466</td>
+<td>202108</td>
+<td>tarde</td>
+<td>15</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 04:58:13</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>39.053767</td>
+<td>202108</td>
+<td>noite</td>
+<td>19</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 03:47:05</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-3.-Dist%C3%A2ncia-do-cliente-ao-terminal-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 3. Distância do cliente ao terminal ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-3.-Dist%C3%A2ncia-do-cliente-ao-terminal-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Função para calcular a distância entre duas coordenadas
+import math
+
+def haversine(lon1, lat1, lon2, lat2):
+    # Converter de graus para radianos
+    lat1_rad = math.radians(lat1)
+    lon1_rad = math.radians(lon1)
+    lat2_rad = math.radians(lat2)
+    lon2_rad = math.radians(lon2)
+
+    # Diferenças das coordenadas
+    delta_lat = lat2_rad - lat1_rad
+    delta_lon = lon2_rad - lon1_rad
+
+    # Fórmula de Haversine
+    a = math.sin(delta_lat / 2) ** 2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+    # Raio da Terra em km
+    R = 6371.0
+
+    # Distância
+    distancia = R * c
+    return distancia</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00['DISTANCE_CUSTOMER_TERMINAL'] = train_fe00.apply(
+    lambda row: haversine(row['X_CUSTOMER_ID'], row['Y_CUSTOMER_ID'], row['X_TERMINAL_ID'], row['Y_TERMINAL_ID']),
+    axis=1
+)
+
+test_fe00['DISTANCE_CUSTOMER_TERMINAL'] = test_fe00.apply(
+    lambda row: haversine(row['X_CUSTOMER_ID'], row['Y_CUSTOMER_ID'], row['X_TERMINAL_ID'], row['Y_TERMINAL_ID']),
+    axis=1
+)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>MONTH_REFERENCE</th>
+<th>PERIODO_DIA</th>
+<th>HOUR_OF_DAY</th>
+<th>DAY_OF_WEEK</th>
+<th>DAY_OF_MONTH</th>
+<th>MONTH</th>
+<th>YEAR</th>
+<th>IS_WEEKEND</th>
+<th>TIME_DIFF_TRANSACTIONS</th>
+<th>DISTANCE_CUSTOMER_TERMINAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>202108</td>
+<td>noite</td>
+<td>3</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>NaT</td>
+<td>157.692238</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>202108</td>
+<td>manhã</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 02:29:38</td>
+<td>2762.732805</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>202108</td>
+<td>manhã</td>
+<td>10</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 05:09:34</td>
+<td>920.672509</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>202108</td>
+<td>tarde</td>
+<td>15</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 04:58:13</td>
+<td>145.190544</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>202108</td>
+<td>noite</td>
+<td>19</td>
+<td>6</td>
+<td>1</td>
+<td>8</td>
+<td>2021</td>
+<td>True</td>
+<td>0 days 03:47:05</td>
+<td>2593.697073</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00[['CUSTOMER_ID', 'TERMINAL_ID', 'X_CUSTOMER_ID', 'Y_CUSTOMER_ID', 'X_TERMINAL_ID', 'Y_TERMINAL_ID', 'DISTANCE_CUSTOMER_TERMINAL']]</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>X_TERMINAL_ID</th>
+<th>Y_TERMINAL_ID</th>
+<th>DISTANCE_CUSTOMER_TERMINAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>0</td>
+<td>1133</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>8.533587</td>
+<td>59.061828</td>
+<td>157.692238</td>
+</tr>
+<tr>
+<th>209</th>
+<td>0</td>
+<td>1138</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>-6.145777</td>
+<td>37.452541</td>
+<td>2762.732805</td>
+</tr>
+<tr>
+<th>749</th>
+<td>0</td>
+<td>1530</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>26.127946</td>
+<td>57.292877</td>
+<td>920.672509</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>0</td>
+<td>241</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>10.849377</td>
+<td>61.073466</td>
+<td>145.190544</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>0</td>
+<td>1536</td>
+<td>10.950170</td>
+<td>59.768684</td>
+<td>-6.049117</td>
+<td>39.053767</td>
+<td>2593.697073</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>280706</th>
+<td>999</td>
+<td>753</td>
+<td>18.215288</td>
+<td>59.518248</td>
+<td>16.778398</td>
+<td>48.820969</td>
+<td>1193.082459</td>
+</tr>
+<tr>
+<th>280838</th>
+<td>999</td>
+<td>119</td>
+<td>18.215288</td>
+<td>59.518248</td>
+<td>14.065171</td>
+<td>45.762837</td>
+<td>1554.199767</td>
+</tr>
+<tr>
+<th>281189</th>
+<td>999</td>
+<td>753</td>
+<td>18.215288</td>
+<td>59.518248</td>
+<td>16.778398</td>
+<td>48.820969</td>
+<td>1193.082459</td>
+</tr>
+<tr>
+<th>286767</th>
+<td>999</td>
+<td>959</td>
+<td>18.215288</td>
+<td>59.518248</td>
+<td>-8.110124</td>
+<td>37.376444</td>
+<td>3093.037094</td>
+</tr>
+<tr>
+<th>287507</th>
+<td>999</td>
+<td>1181</td>
+<td>18.215288</td>
+<td>59.518248</td>
+<td>12.180100</td>
+<td>46.396655</td>
+<td>1512.508634</td>
+</tr>
+</tbody>
+</table>
+<p>291231 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-4.-Valor-total-transacionado-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 4. Valor total transacionado nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-4.-Valor-total-transacionado-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Ordena o DataFrame por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Loop para aplicar a função de soma de valores de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'TOTAL_AMOUNT_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a soma dos valores das transações nas últimas 'time_window' para cada cliente
+    def calculate_total_amount_recent(transactions):
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].sum()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_total_amount_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_total_amount_recent).reset_index(level=0, drop=True)
+
+# Exibe as primeiras linhas do dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_8H</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_12H</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_24H</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_48H</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_72H</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_AMOUNT_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+<td>191.12</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+<td>287.62</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>178.69</td>
+<td>308.30</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+<td>369.81</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>132.96</td>
+<td>229.46</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+<td>420.58</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 36 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-5.-M%C3%A9dia-de-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 5. Média de valor transacionado nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-5.-M%C3%A9dia-de-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Ordena o DataFrame por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Loop para aplicar a função de soma de valores de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'MEAN_AMOUNT_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a soma dos valores das transações nas últimas 'time_window' para cada cliente
+    def calculate_mean_amount_recent(transactions):
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].mean()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_mean_amount_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_mean_amount_recent).reset_index(level=0, drop=True)
+
+# Exibe as primeiras linhas do dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_8H</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_12H</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_24H</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_48H</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_72H</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_7D</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_14D</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_21D</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_30D</th>
+<th>MEAN_AMOUNT_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+<td>61.510000</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+<td>95.560000</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+<td>95.873333</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>89.345000</td>
+<td>102.766667</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+<td>92.452500</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>66.480000</td>
+<td>76.486667</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+<td>84.116000</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 49 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-6.-Mediana-de-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 6. Mediana de valor transacionado nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-6.-Mediana-de-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Ordena o DataFrame por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Loop para aplicar a função de soma de valores de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'MEDIAN_AMOUNT_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a soma dos valores das transações nas últimas 'time_window' para cada cliente
+    def calculate_median_amount_recent(transactions):
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].median()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_median_amount_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_median_amount_recent).reset_index(level=0, drop=True)
+
+# Exibe as primeiras linhas do dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_8H</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_12H</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_24H</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_48H</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_72H</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_7D</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_14D</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_21D</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_30D</th>
+<th>MEDIAN_AMOUNT_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.510</td>
+<td>61.51</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+<td>61.510</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>95.560</td>
+<td>95.56</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+<td>95.560</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>96.500</td>
+<td>96.50</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+<td>96.500</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>89.345</td>
+<td>96.50</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+<td>89.345</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>66.480</td>
+<td>82.19</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+<td>82.190</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 62 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-7.-M%C3%ADnimo-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 7. Mínimo valor transacionado nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-7.-M%C3%ADnimo-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Ordena o DataFrame por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Loop para aplicar a função de soma de valores de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'MIN_AMOUNT_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a soma dos valores das transações nas últimas 'time_window' para cada cliente
+    def calculate_min_amount_recent(transactions):
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].min()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_min_amount_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_min_amount_recent).reset_index(level=0, drop=True)
+
+# Exibe as primeiras linhas do dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_8H</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_12H</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_24H</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_48H</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_72H</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_7D</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_14D</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_21D</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_30D</th>
+<th>MIN_AMOUNT_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>82.19</td>
+<td>82.19</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+<td>50.77</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 75 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-8.-M%C3%A1ximo-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 8. Máximo valor transacionado nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-8.-M%C3%A1ximo-valor-transacionado-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Ordena o DataFrame por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Loop para aplicar a função de soma de valores de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'MAX_AMOUNT_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a soma dos valores das transações nas últimas 'time_window' para cada cliente
+    def calculate_max_amount_recent(transactions):
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].max()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_max_amount_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_max_amount_recent).reset_index(level=0, drop=True)
+
+# Exibe as primeiras linhas do dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_8H</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_12H</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_24H</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_48H</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_72H</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_7D</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_14D</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_21D</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_30D</th>
+<th>MAX_AMOUNT_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+<td>61.51</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>96.50</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>82.19</td>
+<td>96.50</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+<td>129.61</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 88 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-9.-Quantidade-total-de-transa%C3%A7%C3%B5es-realizadas-pelo-cliente-nas-%C3%BAltimas-X-horas-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 9. Quantidade total de transações realizadas pelo cliente nas últimas X horas ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-9.-Quantidade-total-de-transa%C3%A7%C3%B5es-realizadas-pelo-cliente-nas-%C3%BAltimas-X-horas-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exemplo de valores de janela de tempo
+time_windows = ['1H', '2H', '4H', '8H', '12H', '24H', '48H', '72H', '7D', '14D', '21D', '30D', '45D']
+
+# Loop para aplicar a função de contagem de transações em diferentes janelas de tempo
+for time_window in time_windows:
+    # Nome da coluna baseada na janela de tempo
+    column_name = f'TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_{time_window.upper()}'
+
+    # Função para calcular a quantidade de transações nas últimas 'time_window' horas para cada cliente
+    def calculate_transaction_count_recent(transactions):
+        # Contando apenas as transações em uma janela de 'time_window'
+        return transactions.rolling(time_window, on='TX_DATETIME')['TX_AMOUNT'].count()
+
+    # Aplica a função no contexto do groupby para cada CUSTOMER_ID e adiciona ao dataframe
+    train_fe00[column_name] = train_fe00.groupby('CUSTOMER_ID').apply(calculate_transaction_count_recent).reset_index(level=0, drop=True)
+    test_fe00[column_name] = test_fe00.groupby('CUSTOMER_ID').apply(calculate_transaction_count_recent).reset_index(level=0, drop=True)
+
+# Exibir o dataframe resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_8H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_12H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_24H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_48H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_72H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 101 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-10.-Tempo-desde-a-%C3%BAltima-transa%C3%A7%C3%A3o-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 10. Tempo desde a última transação ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-10.-Tempo-desde-a-%C3%BAltima-transa%C3%A7%C3%A3o-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Calcula o tempo desde a última transação
+train_fe00['DAYS_SINCE_LAST_TRANSACTION'] = train_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff().dt.days
+test_fe00['DAYS_SINCE_LAST_TRANSACTION'] = test_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff().dt.days
+
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_12H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_24H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_48H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_72H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+<th>DAYS_SINCE_LAST_TRANSACTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 102 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-11.-Flag-para-transa%C3%A7%C3%B5es-consecutivas-no-mesmo-terminal-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 11. Flag para transações consecutivas no mesmo terminal ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-11.-Flag-para-transa%C3%A7%C3%B5es-consecutivas-no-mesmo-terminal-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Flag para transações consecutivas no mesmo terminal
+train_fe00['CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL'] = (train_fe00['TERMINAL_ID'] == train_fe00.groupby('CUSTOMER_ID')['TERMINAL_ID'].shift(1)).astype(int)
+test_fe00['CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL'] = (test_fe00['TERMINAL_ID'] == test_fe00.groupby('CUSTOMER_ID')['TERMINAL_ID'].shift(1)).astype(int)
+
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_24H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_48H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_72H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+<th>DAYS_SINCE_LAST_TRANSACTION</th>
+<th>CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 103 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-12.-Propor%C3%A7%C3%A3o-de-transa%C3%A7%C3%B5es-em-per%C3%ADodos-de-alto-risco-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 12. Proporção de transações em períodos de alto risco ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-12.-Propor%C3%A7%C3%A3o-de-transa%C3%A7%C3%B5es-em-per%C3%ADodos-de-alto-risco-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Define um período de risco, como "noite"
+high_risk_periods = ['noite']
+
+# Ordena os DataFrames por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Função para calcular a proporção acumulada de transações em períodos de alto risco
+def calculate_high_risk_ratio(transactions):
+    # Converte os valores para 1 se estiverem no período de risco, caso contrário, 0
+    binary_risk = transactions.isin(high_risk_periods).astype(int)
+    # Calcula a média acumulativa
+    return binary_risk.expanding().mean()
+
+# Aplica a função de proporção acumulada no contexto do groupby para cada CUSTOMER_ID
+train_fe00['TRANSACTION_RATIO_HIGH_RISK_PERIOD'] = train_fe00.groupby('CUSTOMER_ID')['PERIODO_DIA'].apply(calculate_high_risk_ratio).reset_index(level=0, drop=True)
+test_fe00['TRANSACTION_RATIO_HIGH_RISK_PERIOD'] = test_fe00.groupby('CUSTOMER_ID')['PERIODO_DIA'].apply(calculate_high_risk_ratio).reset_index(level=0, drop=True)
+
+# Exibir o DataFrame resultante
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_48H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_72H</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+<th>DAYS_SINCE_LAST_TRANSACTION</th>
+<th>CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL</th>
+<th>TRANSACTION_RATIO_HIGH_RISK_PERIOD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.500000</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.333333</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.250000</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.400000</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 104 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-13.-Flag-para-indicar-transa%C3%A7%C3%A3o-acima-da-m%C3%A9dia-de-valor-transacionado-pelo-cliente-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 13. Flag para indicar transação acima da média de valor transacionado pelo cliente ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-13.-Flag-para-indicar-transa%C3%A7%C3%A3o-acima-da-m%C3%A9dia-de-valor-transacionado-pelo-cliente-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Ordena os DataFrames por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Função para calcular a média cumulativa de transações até o momento da transação atual
+def calculate_cumulative_mean(transactions):
+    return transactions.expanding().mean()
+
+# Aplica a função para calcular a média cumulativa por cliente no conjunto de treino
+train_fe00['CUMULATIVE_AVG_AMOUNT'] = train_fe00.groupby('CUSTOMER_ID')['TX_AMOUNT'].apply(calculate_cumulative_mean).reset_index(level=0, drop=True)
+
+# Aplica a função para calcular a média cumulativa por cliente no conjunto de teste
+test_fe00['CUMULATIVE_AVG_AMOUNT'] = test_fe00.groupby('CUSTOMER_ID')['TX_AMOUNT'].apply(calculate_cumulative_mean).reset_index(level=0, drop=True)
+
+# Define o alerta comparando o valor da transação com a média cumulativa
+train_fe00['HIGH_VALUE_ALERT'] = (train_fe00['TX_AMOUNT'] &gt; train_fe00['CUMULATIVE_AVG_AMOUNT']).astype(int)
+test_fe00['HIGH_VALUE_ALERT'] = (test_fe00['TX_AMOUNT'] &gt; test_fe00['CUMULATIVE_AVG_AMOUNT']).astype(int)
+
+# Visualizar o resultado
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+<th>DAYS_SINCE_LAST_TRANSACTION</th>
+<th>CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL</th>
+<th>TRANSACTION_RATIO_HIGH_RISK_PERIOD</th>
+<th>CUMULATIVE_AVG_AMOUNT</th>
+<th>HIGH_VALUE_ALERT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0</td>
+<td>1.000000</td>
+<td>61.510000</td>
+<td>0</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.500000</td>
+<td>95.560000</td>
+<td>1</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.333333</td>
+<td>95.873333</td>
+<td>1</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.250000</td>
+<td>92.452500</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.400000</td>
+<td>84.116000</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 106 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-14.-Contagem-de-terminais-distintos-utilizados-pelo-cliente-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 14. Contagem de terminais distintos utilizados pelo cliente ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-14.-Contagem-de-terminais-distintos-utilizados-pelo-cliente-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">import pandas as pd
+
+# Ordena os DataFrames por 'CUSTOMER_ID' e 'TX_DATETIME'
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Função para calcular o número total de terminais distintos usados até a transação atual
+def calculate_unique_terminals_count(transactions):
+    unique_terminals = set()
+    unique_terminal_counts = []
+
+    for terminal in transactions:
+        unique_terminals.add(terminal)  # Adiciona o terminal ao conjunto de únicos
+        unique_terminal_counts.append(len(unique_terminals))  # Adiciona a contagem total de terminais únicos
+
+    return pd.Series(unique_terminal_counts, index=transactions.index)
+
+# Aplica a função para calcular o número total de terminais distintos usados até cada transação no conjunto de treino
+train_fe00['DISTINCT_TERMINALS_COUNT'] = train_fe00.groupby('CUSTOMER_ID')['TERMINAL_ID'].apply(calculate_unique_terminals_count).reset_index(level=0, drop=True)
+
+# Aplica a função para calcular o número total de terminais distintos usados até cada transação no conjunto de teste
+test_fe00['DISTINCT_TERMINALS_COUNT'] = test_fe00.groupby('CUSTOMER_ID')['TERMINAL_ID'].apply(calculate_unique_terminals_count).reset_index(level=0, drop=True)
+
+# Visualizar o resultado
+train_fe00.head()</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_21D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_30D</th>
+<th>TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_45D</th>
+<th>DAYS_SINCE_LAST_TRANSACTION</th>
+<th>CONSECUTIVE_TRANSACTIONS_SAME_TERMINAL</th>
+<th>TRANSACTION_RATIO_HIGH_RISK_PERIOD</th>
+<th>CUMULATIVE_AVG_AMOUNT</th>
+<th>HIGH_VALUE_ALERT</th>
+<th>DISTINCT_TERMINALS_COUNT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0</td>
+<td>1.000000</td>
+<td>61.510000</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.500000</td>
+<td>95.560000</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.333333</td>
+<td>95.873333</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<th>1338</th>
+<td>60721</td>
+<td>2021-08-01 15:38:25</td>
+<td>0</td>
+<td>241</td>
+<td>82.19</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.250000</td>
+<td>92.452500</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<th>1650</th>
+<td>61033</td>
+<td>2021-08-01 19:25:30</td>
+<td>0</td>
+<td>1536</td>
+<td>50.77</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>0.0</td>
+<td>0</td>
+<td>0.400000</td>
+<td>84.116000</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 107 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-15.-Raz%C3%B5es-entre-features-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 15. Razões entre features ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-15.-Raz%C3%B5es-entre-features-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Razão entre o valor médio transacionado em 1H pelo valor médio transacionado em XH ou X Dias
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_2H'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_2H']
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_4H'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_4H']
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_8H'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_8H']
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_24H'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_24H']
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_7D'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_7D']
+train_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_14D'] = train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / train_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_14D']</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Razão entre o valor médio transacionado em 1H pelo valor médio transacionado em XH ou X Dias
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_2H'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_2H']
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_4H'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_4H']
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_8H'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_8H']
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_24H'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_24H']
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_7D'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_7D']
+test_fe00['RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_14D'] = test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_1H'] / test_fe00['MEAN_AMOUNT_PER_CUSTOMER_LAST_14D']</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Razão entre o valor médio transacionado em 1H pelo valor médio transacionado em XH ou X Dias
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_2H'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_2H']
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_4H'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_4H']
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_8H'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_8H']
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_24H'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_24H']
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_7D'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D']
+train_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_14D'] = train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / train_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D']</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Razão entre o valor médio transacionado em 1H pelo valor médio transacionado em XH ou X Dias
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_2H'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_2H']
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_4H'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_4H']
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_8H'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_8H']
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_24H'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_24H']
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_7D'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_7D']
+test_fe00['RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_14D'] = test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_1H'] / test_fe00['TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST_14D']</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-16.-Diferen%C3%A7a-temporal-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 16. Diferença temporal ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-16.-Diferen%C3%A7a-temporal-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<ul>
+<li>O tempo entre transações consecutivas de um cliente. Transações realizadas em um intervalo muito curto podem ser indicativas de fraude.</li>
+</ul>
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Convertendo a coluna TX_DATETIME para datetime se ainda não estiver
+train_fe00['TX_DATETIME'] = pd.to_datetime(train_fe00['TX_DATETIME'])
+
+# Ordenar por CUSTOMER_ID e TX_DATETIME
+train_fe00 = train_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Calcular a diferença de tempo entre transações consecutivas por cliente
+train_fe00['DIFF_TX_TIME'] = train_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff().dt.total_seconds()
+
+# Preencher valores NaN (primeira transação do cliente) com um valor padrão, como 0 ou uma média
+train_fe00['DIFF_TX_TIME'].fillna(0, inplace=True)
+
+# Convertendo a coluna TX_DATETIME para datetime se ainda não estiver
+test_fe00['TX_DATETIME'] = pd.to_datetime(test_fe00['TX_DATETIME'])
+
+# Ordenar por CUSTOMER_ID e TX_DATETIME
+test_fe00 = test_fe00.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+
+# Calcular a diferença de tempo entre transações consecutivas por cliente
+test_fe00['DIFF_TX_TIME'] = test_fe00.groupby('CUSTOMER_ID')['TX_DATETIME'].diff().dt.total_seconds()
+
+# Preencher valores NaN (primeira transação do cliente) com um valor padrão, como 0 ou uma média
+test_fe00['DIFF_TX_TIME'].fillna(0, inplace=True)</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-17.-Dist%C3%A2ncia-Geogr%C3%A1fica-(dist%C3%A2ncia-entre-terminais)-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 17. Distância Geográfica (distância entre terminais) ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-17.-Dist%C3%A2ncia-Geogr%C3%A1fica-(dist%C3%A2ncia-entre-terminais)-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<ul>
+<li>Aqui, utilizaremos as coordenadas X_CUSTOMER_ID/Y_CUSTOMER_ID e X_TERMINAL_ID/Y_TERMINAL_ID para calcular a distância.</li>
+</ul>
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Função para calcular a distância euclidiana entre dois pontos (geográfica)
+def calcular_distancia(x1, y1, x2, y2):
+    return np.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+# Calcular a distância entre a localização do cliente e o terminal
+train_fe00['GEO_DISTANCE'] = calcular_distancia(
+    train_fe00['X_CUSTOMER_ID'], 
+    train_fe00['Y_CUSTOMER_ID'], 
+    train_fe00['X_TERMINAL_ID'], 
+    train_fe00['Y_TERMINAL_ID']
+)
+
+
+# Calcular a distância entre a localização do cliente e o terminal
+test_fe00['GEO_DISTANCE'] = calcular_distancia(
+    test_fe00['X_CUSTOMER_ID'], 
+    test_fe00['Y_CUSTOMER_ID'], 
+    test_fe00['X_TERMINAL_ID'], 
+    test_fe00['Y_TERMINAL_ID']
+)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_7D</th>
+<th>RATIO_MEAN_AMOUNT_PER_CUSTOMER_LAST1H_TO_14D</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_2H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_4H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_8H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_24H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_7D</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_14D</th>
+<th>DIFF_TX_TIME</th>
+<th>GEO_DISTANCE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.0</td>
+<td>2.517840</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.356321</td>
+<td>1.356321</td>
+<td>1.0</td>
+<td>0.5</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>8978.0</td>
+<td>28.111948</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.006536</td>
+<td>1.006536</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>18574.0</td>
+<td>15.378378</td>
+</tr>
+</tbody>
+</table>
+<p>3 rows × 121 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-18.-Frequ%C3%AAncia-de-Transa%C3%A7%C3%B5es-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 18. Frequência de Transações ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-18.-Frequ%C3%AAncia-de-Transa%C3%A7%C3%B5es-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<ul>
+<li>Criaremos variáveis que capturam a quantidade de transações feitas em diferentes janelas temporais.</li>
+</ul>
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">def calculate_transaction_counts(df):
+    df = df.sort_values(by=['CUSTOMER_ID', 'TX_DATETIME'])
+    
+    # Converter TX_DATETIME para pandas datetime (se necessário)
+    df['TX_DATETIME'] = pd.to_datetime(df['TX_DATETIME'])
+    
+    # Definir uma janela de 24 horas, 7 dias e 30 dias
+    window_24h = pd.Timedelta('1 days')
+    window_week = pd.Timedelta('7 days')
+    window_month = pd.Timedelta('30 days')
+    
+    # Calcular as transações nas últimas 24 horas
+    df['TX_LAST_24H'] = df.groupby('CUSTOMER_ID').apply(
+        lambda group: group['TX_DATETIME'].apply(
+            lambda current_time: group[(group['TX_DATETIME'] &gt;= current_time - window_24h) &amp; 
+                                       (group['TX_DATETIME'] &lt; current_time)].shape[0]
+        )
+    ).reset_index(drop=True)
+    
+    # Calcular as transações na última semana
+    df['TX_LAST_WEEK'] = df.groupby('CUSTOMER_ID').apply(
+        lambda group: group['TX_DATETIME'].apply(
+            lambda current_time: group[(group['TX_DATETIME'] &gt;= current_time - window_week) &amp; 
+                                       (group['TX_DATETIME'] &lt; current_time)].shape[0]
+        )
+    ).reset_index(drop=True)
+    
+    # Calcular as transações no último mês
+    df['TX_LAST_MONTH'] = df.groupby('CUSTOMER_ID').apply(
+        lambda group: group['TX_DATETIME'].apply(
+            lambda current_time: group[(group['TX_DATETIME'] &gt;= current_time - window_month) &amp; 
+                                       (group['TX_DATETIME'] &lt; current_time)].shape[0]
+        )
+    ).reset_index(drop=True)
+    
+    return df</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%%time
+# Aplicar a função ao dataframe
+train_fe00 = calculate_transaction_counts(train_fe00)</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>CPU times: total: 15min 18s
+Wall time: 16min
+</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">train_fe00.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>TX_FRAUD</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>...</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_4H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_8H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_24H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_7D</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_14D</th>
+<th>DIFF_TX_TIME</th>
+<th>GEO_DISTANCE</th>
+<th>TX_LAST_24H</th>
+<th>TX_LAST_WEEK</th>
+<th>TX_LAST_MONTH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>69</th>
+<td>59452</td>
+<td>2021-08-01 03:01:00</td>
+<td>0</td>
+<td>1133</td>
+<td>61.51</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.0</td>
+<td>2.517840</td>
+<td>2</td>
+<td>11</td>
+<td>49</td>
+</tr>
+<tr>
+<th>209</th>
+<td>59592</td>
+<td>2021-08-01 05:30:38</td>
+<td>0</td>
+<td>1138</td>
+<td>129.61</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>0.5</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>8978.0</td>
+<td>28.111948</td>
+<td>1</td>
+<td>8</td>
+<td>55</td>
+</tr>
+<tr>
+<th>749</th>
+<td>60132</td>
+<td>2021-08-01 10:40:12</td>
+<td>0</td>
+<td>1530</td>
+<td>96.50</td>
+<td>0</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>...</td>
+<td>1.0</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>0.333333</td>
+<td>18574.0</td>
+<td>15.378378</td>
+<td>1</td>
+<td>27</td>
+<td>114</td>
+</tr>
+</tbody>
+</table>
+<p>3 rows × 124 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%%time
+# Aplicar a função ao dataframe
+test_fe00 = calculate_transaction_counts(test_fe00)</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>CPU times: total: 12min 5s
+Wall time: 12min 20s
+</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">test_fe00.head(3)</code></pre>
+</div>
+<div class="scrollable-output">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>TRANSACTION_ID</th>
+<th>TX_DATETIME</th>
+<th>CUSTOMER_ID</th>
+<th>TERMINAL_ID</th>
+<th>TX_AMOUNT</th>
+<th>X_CUSTOMER_ID</th>
+<th>Y_CUSTOMER_ID</th>
+<th>MEAN_AMOUNT</th>
+<th>STD_AMOUNT</th>
+<th>MEAN_NB_TX_PER_DAY</th>
+<th>...</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_4H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_8H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_24H</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_7D</th>
+<th>RATIO_TOTAL_TRANSACTIONS_PER_CUSTOMER_LAST1H_TO_14D</th>
+<th>DIFF_TX_TIME</th>
+<th>GEO_DISTANCE</th>
+<th>TX_LAST_24H</th>
+<th>TX_LAST_WEEK</th>
+<th>TX_LAST_MONTH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>365</th>
+<td>352955</td>
+<td>2022-01-01 07:39:53</td>
+<td>0</td>
+<td>1359</td>
+<td>70.70</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>2.179533</td>
+<td>...</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.0</td>
+<td>7.626661</td>
+<td>5</td>
+<td>28</td>
+<td>82</td>
+</tr>
+<tr>
+<th>654</th>
+<td>353244</td>
+<td>2022-01-01 10:06:26</td>
+<td>0</td>
+<td>1133</td>
+<td>22.94</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>2.179533</td>
+<td>...</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>0.500000</td>
+<td>8793.0</td>
+<td>2.517840</td>
+<td>4</td>
+<td>23</td>
+<td>105</td>
+</tr>
+<tr>
+<th>707</th>
+<td>353297</td>
+<td>2022-01-01 10:22:47</td>
+<td>0</td>
+<td>1133</td>
+<td>8.06</td>
+<td>10.95017</td>
+<td>59.768684</td>
+<td>62.262521</td>
+<td>31.13126</td>
+<td>2.179533</td>
+<td>...</td>
+<td>0.666667</td>
+<td>0.666667</td>
+<td>0.666667</td>
+<td>0.666667</td>
+<td>0.666667</td>
+<td>981.0</td>
+<td>2.517840</td>
+<td>1</td>
+<td>25</td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+<p>3 rows × 123 columns</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-19.-Padr%C3%A3o-de-Gastos-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 19. Padrão de Gastos ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-19.-Padr%C3%A3o-de-Gastos-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<ul>
+<li>Aqui criamos features que indicam o quanto a transação atual se desvia da média ou do desvio padrão dos gastos anteriores.</li>
+</ul>
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Desvio da média e desvio padrão do valor das transações por cliente
+train_fe00['AMOUNT_DIFF_FROM_MEAN'] = train_fe00['TX_AMOUNT'] - train_fe00['MEAN_AMOUNT']
+train_fe00['AMOUNT_DIFF_FROM_STD'] = (train_fe00['TX_AMOUNT'] - train_fe00['MEAN_AMOUNT']) / train_fe00['STD_AMOUNT']</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Desvio da média e desvio padrão do valor das transações por cliente
+test_fe00['AMOUNT_DIFF_FROM_MEAN'] = test_fe00['TX_AMOUNT'] - test_fe00['MEAN_AMOUNT']
+test_fe00['AMOUNT_DIFF_FROM_STD'] = (test_fe00['TX_AMOUNT'] - test_fe00['MEAN_AMOUNT']) / test_fe00['STD_AMOUNT']</code></pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<h2 id="Feature-Engineering---%5B-20.-Hor%C3%A1rios-de-Transa%C3%A7%C3%B5es-(transa%C3%A7%C3%B5es-em-hor%C3%A1rios-n%C3%A3o-usuais)-%5D"><font color="#CC403E" face="Segoe Print" size="4"><strong>Feature Engineering - [ 20. Horários de Transações (transações em horários não usuais) ]</strong></font><a class="anchor-link" href="#Feature-Engineering---%5B-20.-Hor%C3%A1rios-de-Transa%C3%A7%C3%B5es-(transa%C3%A7%C3%B5es-em-hor%C3%A1rios-n%C3%A3o-usuais)-%5D">¶</a></h2><font color="#66666" face="Segoe Print" size="3">
+<ul>
+<li>Podemos usar a hora da transação para identificar se ela foi feita em um horário incomum, como de madrugada.</li>
+</ul>
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Extrair a hora da transação
+train_fe00['TX_HOUR'] = train_fe00['TX_DATETIME'].dt.hour
+
+# Verificar se a transação ocorreu de madrugada (por exemplo, entre 0h e 6h)
+train_fe00['IS_NIGHT_TX'] = train_fe00['TX_HOUR'].apply(lambda x: 1 if x &gt;= 0 and x &lt;= 6 else 0)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Extrair a hora da transação
+test_fe00['TX_HOUR'] = test_fe00['TX_DATETIME'].dt.hour
+
+# Verificar se a transação ocorreu de madrugada (por exemplo, entre 0h e 6h)
+test_fe00['IS_NIGHT_TX'] = test_fe00['TX_HOUR'].apply(lambda x: 1 if x &gt;= 0 and x &lt;= 6 else 0)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"># Exportando o DataFrame para um arquivo CSV
+train_fe00.to_csv(caminho+'train_feature_store.csv', index=False)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">test_fe00.to_csv(caminho+'test_feature_store.csv', index=False)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%reload_ext watermark
+%watermark -a "Roberto Soares - LfLngLrnng"</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>Author: Roberto Soares - LfLngLrnng
+
+</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%watermark -v -m</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>Python implementation: CPython
+Python version       : 3.11.9
+IPython version      : 8.25.0
+
+Compiler    : MSC v.1916 64 bit (AMD64)
+OS          : Windows
+Release     : 10
+Machine     : AMD64
+Processor   : Intel64 Family 6 Model 158 Stepping 9, GenuineIntel
+CPU cores   : 4
+Architecture: 64bit
+
+</pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">%watermark --iversions</code></pre>
+</div>
+<div class="scrollable-output">
+<pre>matplotlib: 3.8.4
+seaborn   : 0.13.2
+numpy     : 1.26.4
+pandas    : 2.2.2
+
+</pre>
+</div>
+</div>
+<div class="cell">
+<!-- Renderiza Markdown, e inclui suporte para imagens -->
+<div class="markdown">
+<div style="background-color:#F3F2EE">
+<p><font color="#CC403E" face="Segoe Print" size="5"><strong>Fim</strong></font></p>
+<font color="#66666" face="Segoe Print" size="3">
+</font></div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python">!jupyter nbconvert --to html --template=D:/anaconda3/envs/spark-pod-env/share/jupyter/nbconvert/templates/compatibility/mytemplate_a.tpl PCD_0324b_Score_Anti_Fraude_DP.ipynb</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code_cell">
+<pre><code class="python"></code></pre>
+</div>
+</div>
+<script>
+        // Reprocessa o MathJax após a página ser carregada
+        document.addEventListener("DOMContentLoaded", function() {
+            MathJax.typesetPromise();
+        });
+    </script>
+</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body>
+</html>
